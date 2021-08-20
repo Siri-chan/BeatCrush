@@ -84,6 +84,22 @@ function SaveString (_string, _filename) {
 	buffer_delete(_buffer);
 }
 
+function CreateDefaultMap(){
+	var data = {
+	title: "test",
+	//only ogg is supported
+	songLoc: "song.ogg",
+	notes: [
+		{ position: 0, time: 2000 },
+		{ position: 4, time: 4000 }
+	],
+	dialogue: [
+		{ text: "test", time: 7000, decision: [] }
+	]
+	}
+	ProcessErrorCodes(CreateBeatMapFromData("default.beat", data));
+	return;
+}
 function LoadString (_filename) {
 	var _buffer = buffer_load(working_directory + _filename);
 	var _string = buffer_read(_buffer, buffer_string);
