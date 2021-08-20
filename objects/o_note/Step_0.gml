@@ -1,1 +1,1 @@
-move_towards_point(x, 740, 1);
+move_towards_point(x, 740, global.beatmap.approachRate);

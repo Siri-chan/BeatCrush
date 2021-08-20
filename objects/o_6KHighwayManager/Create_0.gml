@@ -91,8 +91,8 @@ function CheckNoteY(h){
 				}
 			}
 			score += points * combo
-			destroyNote(h, points)
 		}
+		destroyNote(h, points)
 		return;
 	}
 	

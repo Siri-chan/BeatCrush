@@ -89,6 +89,7 @@ function CreateDefaultMap(){
 	title: "test",
 	//only ogg is supported
 	songLoc: "song.ogg",
+	approachRate: 3.5,
 	notes: [
 		{ position: 0, time: 2000 },
 		{ position: 4, time: 4000 }
