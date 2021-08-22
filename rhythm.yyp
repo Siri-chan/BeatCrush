@@ -1,6 +1,7 @@
 {
   "resources": [
     {"id":{"name":"o_roomdivider","path":"objects/o_roomdivider/o_roomdivider.yy",},"order":2,},
+    {"id":{"name":"rm_menu","path":"rooms/rm_menu/rm_menu.yy",},"order":1,},
     {"id":{"name":"MapData","path":"scripts/MapData/MapData.yy",},"order":0,},
     {"id":{"name":"o_6KHighwayManager","path":"objects/o_6KHighwayManager/o_6KHighwayManager.yy",},"order":1,},
     {"id":{"name":"i_perfect","path":"sprites/i_perfect/i_perfect.yy",},"order":5,},
@@ -9,10 +10,12 @@
     {"id":{"name":"i_6kHighway","path":"sprites/i_6kHighway/i_6kHighway.yy",},"order":0,},
     {"id":{"name":"i_6kgirldivider","path":"sprites/i_6kgirldivider/i_6kgirldivider.yy",},"order":2,},
     {"id":{"name":"i_highwayBackground","path":"sprites/i_highwayBackground/i_highwayBackground.yy",},"order":3,},
+    {"id":{"name":"o_menu","path":"objects/o_menu/o_menu.yy",},"order":4,},
     {"id":{"name":"o_EditorFramework","path":"objects/o_EditorFramework/o_EditorFramework.yy",},"order":0,},
     {"id":{"name":"i_noteCatcher","path":"sprites/i_noteCatcher/i_noteCatcher.yy",},"order":4,},
+    {"id":{"name":"csans","path":"fonts/csans/csans.yy",},"order":0,},
     {"id":{"name":"i_note","path":"sprites/i_note/i_note.yy",},"order":1,},
-    {"id":{"name":"Room1","path":"rooms/Room1/Room1.yy",},"order":0,},
+    {"id":{"name":"rm_beatmap","path":"rooms/rm_beatmap/rm_beatmap.yy",},"order":0,},
   ],
   "Options": [
     {"name":"Linux","path":"options/linux/options_linux.yy",},
@@ -28,7 +31,8 @@
     "children": [],
   },
   "RoomOrderNodes": [
-    {"roomId":{"name":"Room1","path":"rooms/Room1/Room1.yy",},},
+    {"roomId":{"name":"rm_menu","path":"rooms/rm_menu/rm_menu.yy",},},
+    {"roomId":{"name":"rm_beatmap","path":"rooms/rm_beatmap/rm_beatmap.yy",},},
   ],
   "Folders": [
     {"folderPath":"folders/Sprites.yy","order":1,"resourceVersion":"1.0","name":"Sprites","tags":[],"resourceType":"GMFolder",},
