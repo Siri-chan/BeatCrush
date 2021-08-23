@@ -27,6 +27,7 @@ for(i = 0; i < array_length(global.beatmap.notes); i++){
 }
 function HandleInput(){
 	if (keyboard_check_pressed(ord("Q"))) {
+	instance_create_layer(x, 614, "Instances", o_keyPressIndicator)
 		for(i = 0; i < instance_number(o_note); i++){
 			var h = instance_find(o_note, i)
 			if(h.position != 0) { continue; }
@@ -34,35 +35,40 @@ function HandleInput(){
 			CheckNoteY(h);
 		}
 	}
-	else if (keyboard_check_pressed(ord("W"))){
-		for(i = 0; i < instance_number(o_note); i++){
+	if (keyboard_check_pressed(ord("W"))){ //these cant be else if bc we handle nore than 1 input per step
+		instance_create_layer(x + (71.5), 614, "Instances", o_keyPressIndicator)
+		for(i = 0; i < instance_number(o_note); i++){			
 			var h = instance_find(o_note, i)
 			if(h.position != 1) { continue; }
 			//h.image_blend = c_white
 			CheckNoteY(h);
 		}
-	}else if (keyboard_check_pressed(ord("E"))){
+	} if (keyboard_check_pressed(ord("E"))){
+		instance_create_layer(x + (2 * 71.5), 614, "Instances", o_keyPressIndicator)
 		for(i = 0; i < instance_number(o_note); i++){
 			var h = instance_find(o_note, i)
 			if(h.position != 2) { continue; }
 			//h.image_blend = c_white
 			CheckNoteY(h);
 		}
-	} else if(keyboard_check_pressed(ord("I"))){
+	} if(keyboard_check_pressed(ord("I"))){
+		instance_create_layer(x + (3 * 71.5), 614, "Instances", o_keyPressIndicator)
 		for(i = 0; i < instance_number(o_note); i++){
 			var h = instance_find(o_note, i)
 			if(h.position != 3) { continue; }
 			//h.image_blend = c_white
 			CheckNoteY(h);
 		}
-	}else if(keyboard_check_pressed(ord("O"))){
+	} if(keyboard_check_pressed(ord("O"))){
+		instance_create_layer(x + (4 * 71.5), 614, "Instances", o_keyPressIndicator)
 		for(i = 0; i < instance_number(o_note); i++){
 			var h = instance_find(o_note, i)
 			if(h.position != 4) { continue; }
 			//h.image_blend = c_white
 			CheckNoteY(h);
 		}
-	}else if (keyboard_check_pressed(ord("P"))){
+	} if (keyboard_check_pressed(ord("P"))){
+		instance_create_layer(x + (5 * 71.5), 614, "Instances", o_keyPressIndicator)
 		for(i = 0; i < instance_number(o_note); i++){
 			var h = instance_find(o_note, i)
 			if(h.position != 5) { continue; }

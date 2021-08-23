@@ -1,16 +1,18 @@
-//mapdata looks like this
+//default mapdata looks like this
 /*
-data = {
-	title: load_file[0],
-	songLoc: load_file[1],
+	var data = {
+	title: "test",
+	//only ogg is supported
+	songLoc: "song.ogg",
+	approachRate: 3.5,
 	notes: [
-		{ position: (0-6), time: (in ms) },
-		{ position: (0-6), time: (in ms) }
+		{ position: 0, time: 2000 },
+		{ position: 4, time: 4000 }
 	],
 	dialogue: [
-		{ text: "", time: (in ms), decision: ["yes", "no"] (leave empty for no decision)}
+		{ text: "test", time: 7000, decision: [] }
 	]
-}
+	}
 */
 function CreateBeatMapFromData(fileName, data){
 	var errorCode = 0;
@@ -49,28 +51,6 @@ function ReadBeatMapFromFile(fileName){
 	if(fileName == ""){
 		fileName = "nomap.beat"
 	}
-	/*
-	var load_file
-	var file = file_text_open_read(fileName);
-	var i = 0;
-	while(!file_text_eof(file)){
-		load_file[i++] = file_text_read_string(file);
-	    file_text_readln(file);
-	}
-	file_text_close(file);
-	i = 2;
-	var tmpList = []
-	while(array_length_1d(load_file) > i){
-		 tmpList [i-2] = load_file[i]
-		 i++
-	}
-	mapData =
-	{
-		title: load_file[0]
-		songLoc: load_file[1]
-		notes: tmpList
-	}
-*/
 	//if (!file_exists("\\songs\\" + fileName)) return false;
 	var _json = LoadString("\\songs\\" + fileName);
 	var mapData = json_parse(_json);
@@ -84,15 +64,28 @@ function SaveString (_string, _filename) {
 	buffer_delete(_buffer);
 }
 
+
 function CreateDefaultMap(){
 	var data = {
 	title: "test",
 	//only ogg is supported
 	songLoc: "song.ogg",
-	approachRate: 3.5,
+	approachRate: 5,
 	notes: [
 		{ position: 0, time: 2000 },
-		{ position: 4, time: 4000 }
+		{ position: 4, time: 4000 },
+		{ position: 5, time: 4500 },
+		{ position: 2, time: 3000 },
+		{ position: 1, time: 6000 },
+		{ position: 3, time: 8000 },
+		{ position: 0, time: 8200 },
+		{ position: 1, time: 9000 },
+		{ position: 4, time: 9100 },
+		{ position: 5, time: 9400 },
+		{ position: 2, time: 10000 },
+		{ position: 3, time: 11000 },
+		{ position: 1, time: 11400 },
+		{ position: 0, time: 14000 }
 	],
 	dialogue: [
 		{ text: "test", time: 7000, decision: [] }
