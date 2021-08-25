@@ -97,14 +97,17 @@ function CheckNoteY(h){
 				}
 			}
 			score += points * combo
+			combo++;
+		} else {
+			combo = 1
 		}
 		destroyNote(h, points)
 		return;
 	}
-	
 	//miss without destroying note
 	//grab 0pts case from destroyNote()
 	//break combo
+	combo = 1;
 	//miss sound
 	//play same miss effect
 	return;
