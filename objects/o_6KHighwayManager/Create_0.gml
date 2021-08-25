@@ -149,6 +149,10 @@ function CheckNoteY(h){
 	combo = 1;
 	//miss sound
 	//play same miss effect
+	// destroy note if off screen
+	if(h.y > room_height){
+		instance_destroy(h);
+	}
 	return;
 }
 function destroyNote(note_id, pts){
