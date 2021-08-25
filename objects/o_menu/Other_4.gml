@@ -1,0 +1,1 @@
+//on score room start, grab score, calculate max score and use a percentage to calculate rating from F to SS+
