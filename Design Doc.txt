@@ -1,0 +1,14 @@
+Idea or Concept:
+	Dating Sim x Rhythm Game
+Genre:
+	Well, Rhythm Game / Visual Novel
+Story and Characters:
+	In the final project I want to add a story mode, but this version of the game is designed solely around user-generated content for the sake of my time and sanity.
+Core Game Mechanics:
+	10 Key Rhythm Game, with 6 keys on a traditional highway, using the other 4 to make desicions in Visual Novel
+Gameplay: 
+	Fast Paced 
+Level and/or World Design:
+	User Generated .beat files found within %localappdata%
+Monetisation Strategy:
+	Free-to-Play with 'Premium' Supporter option with a couple of perks that don't cause gameplay to become P2W.
