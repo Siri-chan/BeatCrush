@@ -5,6 +5,7 @@
     {"id":{"name":"o_keyPressIndicator","path":"objects/o_keyPressIndicator/o_keyPressIndicator.yy",},"order":6,},
     {"id":{"name":"i_inputInfo","path":"sprites/i_inputInfo/i_inputInfo.yy",},"order":7,},
     {"id":{"name":"rm_menu","path":"rooms/rm_menu/rm_menu.yy",},"order":1,},
+    {"id":{"name":"rm_score","path":"rooms/rm_score/rm_score.yy",},"order":2,},
     {"id":{"name":"MapData","path":"scripts/MapData/MapData.yy",},"order":0,},
     {"id":{"name":"o_6KHighwayManager","path":"objects/o_6KHighwayManager/o_6KHighwayManager.yy",},"order":1,},
     {"id":{"name":"o_6KScoreDisplay","path":"objects/o_6KScoreDisplay/o_6KScoreDisplay.yy",},"order":7,},
@@ -14,6 +15,7 @@
     {"id":{"name":"i_6kgirldivider","path":"sprites/i_6kgirldivider/i_6kgirldivider.yy",},"order":2,},
     {"id":{"name":"i_highwayBackground","path":"sprites/i_highwayBackground/i_highwayBackground.yy",},"order":3,},
     {"id":{"name":"i_keyPressIndicator","path":"sprites/i_keyPressIndicator/i_keyPressIndicator.yy",},"order":8,},
+    {"id":{"name":"a_miss2","path":"sprites/a_miss2/a_miss2.yy",},"order":0,},
     {"id":{"name":"o_menu","path":"objects/o_menu/o_menu.yy",},"order":4,},
     {"id":{"name":"o_inputInfo","path":"objects/o_inputInfo/o_inputInfo.yy",},"order":5,},
     {"id":{"name":"o_EditorFramework","path":"objects/o_EditorFramework/o_EditorFramework.yy",},"order":0,},
@@ -38,6 +40,7 @@
   "RoomOrderNodes": [
     {"roomId":{"name":"rm_menu","path":"rooms/rm_menu/rm_menu.yy",},},
     {"roomId":{"name":"rm_beatmap","path":"rooms/rm_beatmap/rm_beatmap.yy",},},
+    {"roomId":{"name":"rm_score","path":"rooms/rm_score/rm_score.yy",},},
   ],
   "Folders": [
     {"folderPath":"folders/Sprites.yy","order":1,"resourceVersion":"1.0","name":"Sprites","tags":[],"resourceType":"GMFolder",},
@@ -54,6 +57,7 @@
     {"folderPath":"folders/Animation Curves.yy","order":12,"resourceVersion":"1.0","name":"Animation Curves","tags":[],"resourceType":"GMFolder",},
     {"folderPath":"folders/Notes.yy","order":13,"resourceVersion":"1.0","name":"Notes","tags":[],"resourceType":"GMFolder",},
     {"folderPath":"folders/Extensions.yy","order":14,"resourceVersion":"1.0","name":"Extensions","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Sprites/Animation.yy","order":10,"resourceVersion":"1.0","name":"Animation","tags":[],"resourceType":"GMFolder",},
   ],
   "AudioGroups": [
     {"targets":-1,"resourceVersion":"1.3","name":"audiogroup_default","resourceType":"GMAudioGroup",},

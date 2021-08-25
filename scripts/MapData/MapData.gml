@@ -1,6 +1,7 @@
 //default mapdata looks like this
 /*
 	var data = {
+	version: 1,
 	title: "test",
 	//only ogg is supported
 	songLoc: "song.ogg",
@@ -14,6 +15,8 @@
 	]
 	}
 */
+//constant
+MAP_VER = 1;
 function CreateBeatMapFromData(fileName, data){
 	var errorCode = 0;
 	if (data.notes == {} || data.dialogue == {} || data.title == "" || data.songLoc == ""){
@@ -67,6 +70,7 @@ function SaveString (_string, _filename) {
 
 function CreateDefaultMap(){
 	var data = {
+	version: global.MAP_VER,
 	title: "test",
 	//only ogg is supported
 	songLoc: "song.ogg",

@@ -5,27 +5,65 @@ noteCount = 0;
 score = 0;
 combo = 1;
 
-function CreateNewNotes(){
-for(i = 0; i < array_length(global.beatmap.notes); i++){
-	if (global.beatmap.notes[i].time >= (get_timer() - startTime)/1000 || global.beatmap.notes[i].time < 0){
-		continue;
+function CheckMapVersion(beatmap){
+	if(beatmap.version != global.MAP_VER){
+		if(beatmap.version < global.MAP_VER){
+			//Back-Compatibility
+			switch(beatmap.version){
+				case 1:
+				break;
+				default:
+				throw("Beatmap is Not Compatible with Current Version of BeatCrush," + 
+					"and Backwards Compatibility Checks Failed." +
+					"Delete the Map and restart the Game to Regenerate the Deafult BeatMap Set," +
+					"or Contact the Mapper to Update the Map.");
+				break;
+			}
+			return;
+		}
+		throw("Beatmap is Written in a Newer Version of BeatCrush. " + 
+			  "Check for Updates, or Change the Beatmap Version in the *.beat file." +
+			  "The Second Method may cause Issues and for the map to not play as intended."+
+			  "and I am not liable if such an issue occurs.");
 	}
-	var note = instance_create_layer(x + (global.beatmap.notes[i].position * 71.5), y, "Instances", o_note);
-	note.position = global.beatmap.notes[i].position;
-	with (note){
-		var colors = [c_fuchsia, c_yellow, c_green, c_red, c_blue, c_orange];
-		image_blend = colors[position];	
-	}
-	//TODO hold notes
-	//if(global.beatmap.notes[i].holdTime*fps <= 0){
-		//negative time shouldnt be redrawn
-	global.beatmap.notes[i].time = -1;
-	/*} else {
-		global.beatmap.notes[i].holdTime-=fps;
-	}*/
-} 
 }
-function HandleInput(){
+CheckMapVersion(global.beatmap)
+
+function CreateNewNotes(){
+	var notesLeft = false;
+	for(i = 0; i < array_length(global.beatmap.notes); i++){
+		if(global.beatmap.notes[i].time >= 0) notesLeft = true;
+		if (global.beatmap.notes[i].time >= (get_timer() - startTime)/1000 || global.beatmap.notes[i].time < 0){
+			continue;
+		}
+		var note = instance_create_layer(x + (global.beatmap.notes[i].position * 71.5), y, "Instances", o_note);
+		note.position = global.beatmap.notes[i].position;
+		with (note){
+			var colors = [c_fuchsia, c_yellow, c_green, c_red, c_blue, c_orange];
+			image_blend = colors[position];	
+		}
+		//TODO hold notes
+		//if(global.beatmap.notes[i].holdTime*fps <= 0){
+			//negative time shouldnt be redrawn
+		global.beatmap.notes[i].time = -1;
+		/*} else {
+			global.beatmap.notes[i].holdTime-=fps;
+		}*/
+	} 
+	if(!notesLeft && instance_number(o_note) < 1){
+		//turn this into a proper function etc
+		room = rm_score;
+	}
+}
+function HandleInput(autoHandle = false){
+	if(autoHandle){
+		for(i = 0; i < instance_number(o_note); i++){
+			var h = instance_find(o_note, i)
+			if(h.y <= room_height - 1) { continue; }
+			//h.image_blend = c_white
+			CheckNoteY(h);
+		}
+	}
 	if (keyboard_check_pressed(ord("Q"))) {
 	instance_create_layer(x, 614, "Instances", o_keyPressIndicator)
 		for(i = 0; i < instance_number(o_note); i++){
@@ -77,6 +115,7 @@ function HandleInput(){
 			//else
 		}
 	}
+	
 }
 function CheckNoteY(h){
 	var points = 0;
