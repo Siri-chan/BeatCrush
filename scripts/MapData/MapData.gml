@@ -16,7 +16,7 @@
 	}
 */
 //constant
-MAP_VER = 1;
+MAP_VER = 2;
 function CreateBeatMapFromData(fileName, data){
 	var errorCode = 0;
 	if (data.notes == {} || data.dialogue == {} || data.title == "" || data.songLoc == ""){
@@ -72,8 +72,12 @@ function CreateDefaultMap(){
 	var data = {
 	version: global.MAP_VER,
 	title: "test",
+	artist: "nobody",
+	mapper: "Siri",
+	contributors: [],
 	//only ogg is supported
-	songLoc: "song.ogg",
+	//also please use namespace style naing to prevent conflicts
+	songLoc: "siri.default.ogg",
 	approachRate: 5,
 	notes: [
 		{ position: 0, time: 2000 },
@@ -95,7 +99,8 @@ function CreateDefaultMap(){
 		{ text: "test", time: 7000, decision: [] }
 	]
 	}
-	ProcessErrorCodes(CreateBeatMapFromData("default.beat", data));
+	ProcessErrorCodes(CreateBeatMapFromData("siri.default.beat", data));
+	//write the ogg that needs to be there
 	return;
 }
 function LoadString (_filename) {

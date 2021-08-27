@@ -1,9 +1,20 @@
-global.beatmap = ReadBeatMapFromFile("default.beat");
+global.beatmap = ReadBeatMapFromFile("siri.default.beat");
 startTime = get_timer();
 lastStep = startTime;
 noteCount = 0;
 score = 0;
 combo = 1;
+global.maxCombo = 1;
+global.misses = 0;
+global.perfects = 0;
+global.goods = 0;
+global.oks = 0;
+if(file_exists(working_directory + "\\songs\\" + global.beatmap.songLoc)){
+	global.bgm = audio_create_stream(working_directory + "\\songs\\" + global.beatmap.songLoc);
+} else {
+	global.bgm = bgm_default;
+}
+audio_play_sound(global.bgm, 1, false);
 
 function CheckMapVersion(beatmap){
 	if(beatmap.version != global.MAP_VER){
@@ -11,6 +22,9 @@ function CheckMapVersion(beatmap){
 			//Back-Compatibility
 			switch(beatmap.version){
 				case 1:
+					beatmap.artist = "Unknown Artist";
+					beatmap.mapper = "Unknown Mapper";
+					beatmap.contributors = [];
 				break;
 				default:
 				throw("Beatmap is Not Compatible with Current Version of BeatCrush," + 
@@ -137,6 +151,7 @@ function CheckNoteY(h){
 			}
 			score += points * combo
 			combo++;
+			if (combo > global.maxCombo) global.maxCombo = combo
 		} else {
 			combo = 1
 		}
@@ -148,7 +163,14 @@ function CheckNoteY(h){
 	//break combo
 	combo = 1;
 	//miss sound
-	//play same miss effect
+	global.misses++;
+	//note is too early, vs note off screen
+	if(h.y > 610){
+		//play off-screen miss effect
+		instance_create_layer(x + (h.position * 71.5), room_height, "Instances", o_miss2)
+	} else {
+		//play normal miss effect
+	}
 	// destroy note if off screen
 	if(h.y > room_height){
 		instance_destroy(h);
@@ -156,19 +178,23 @@ function CheckNoteY(h){
 	return;
 }
 function destroyNote(note_id, pts){
-	if(pts != 50 || pts !=  100 || pts != 150){ pts = 0; }
+	if(pts != 50 && pts != 100 && pts != 150){ pts = 0; }
 	switch(pts){
 		case 0:
+		global.misses++;
 		//play miss fx
 		break;
 		case 50:
 		//play 50pts fx
+		global.oks++;
 		break;
 		case 100:
 		//play 100pts fx
+		global.goods++;
 		break;
 		case 150:
-		
+		//perfect fx
+		global.perfects++;
 		break;
 		default:
 		//throw error
