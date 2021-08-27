@@ -5,6 +5,7 @@
     {"id":{"name":"o_keyPressIndicator","path":"objects/o_keyPressIndicator/o_keyPressIndicator.yy",},"order":6,},
     {"id":{"name":"o_miss2","path":"objects/o_miss2/o_miss2.yy",},"order":8,},
     {"id":{"name":"i_inputInfo","path":"sprites/i_inputInfo/i_inputInfo.yy",},"order":7,},
+    {"id":{"name":"csans_lrg","path":"fonts/csans_lrg/csans_lrg.yy",},"order":1,},
     {"id":{"name":"rm_menu","path":"rooms/rm_menu/rm_menu.yy",},"order":1,},
     {"id":{"name":"rm_score","path":"rooms/rm_score/rm_score.yy",},"order":2,},
     {"id":{"name":"MapData","path":"scripts/MapData/MapData.yy",},"order":0,},
