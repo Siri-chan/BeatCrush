@@ -1,6 +1,7 @@
 switch(room){
 	case rm_menu:
 		draw_set_font(csans);
+		draw_set_halign(fa_left);
 		draw_set_color(c_yellow);
 		draw_text(room_width/2 - 50, room_height/2, "Arcade");
 		draw_sprite(i_key_enter, 0, room_width/2 + 75, room_height/2)
@@ -21,10 +22,10 @@ switch(room){
 		
 		draw_set_halign(fa_left);
 		draw_set_color(c_green);
-		draw_text((room_width / 3) * 2, room_height / 2 - room_height / 3, "Rating: ");
+		draw_text((room_width / 3) * 2, room_height / 2 - 25, "Rating: ");
 		draw_set_font(csans_lrg);
 	 	draw_text((room_width / 3) * 2, room_height / 2, letterRatings[GetLetterRating()]);
-		
+		draw_set_halign(fa_center);
 		draw_set_font(csans);
 		draw_set_color(c_yellow);
 		draw_text(((room_width/9) * 8) - 150, (room_height/9) * 8, "Back to Menu");
