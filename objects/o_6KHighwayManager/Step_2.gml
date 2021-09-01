@@ -1,5 +1,4 @@
-CheckText();
-HandleExistingText();
+
 CreateNewNotes();
 HandleInput();
 

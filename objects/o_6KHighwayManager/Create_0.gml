@@ -25,13 +25,6 @@ function CheckMapVersion(beatmap){
 					beatmap.artist = "Unknown Artist";
 					beatmap.mapper = "Unknown Mapper";
 					beatmap.contributors = [];
-				case 2: 
-					beatmap.textSpeed = 0.75;
-					beatmap.textColor = c_green;
-					beatmap.textShadow = c_black;
-					for(var i = 0; i < array_length(beatmap.dialogue); i++){
-						beatmap.dialogue[i].boxIDX = 0;
-					}
 				break;
 				default:
 				throw("Beatmap is Not Compatible with Current Version of BeatCrush," + 
@@ -40,7 +33,7 @@ function CheckMapVersion(beatmap){
 					"or Contact the Mapper to Update the Map.");
 				break;
 			}
-			return beatmap;
+			return;
 		}
 		throw("Beatmap is Written in a Newer Version of BeatCrush. " + 
 			  "Check for Updates, or Change the Beatmap Version in the *.beat file." +
@@ -48,34 +41,10 @@ function CheckMapVersion(beatmap){
 			  "and I am not liable if such an issue occurs.");
 	}
 }
-global.beatmap = CheckMapVersion(global.beatmap)
-
-function CheckText(){
-	for(i = 0; i < array_length(global.beatmap.dialogue); i++){
-		if(global.beatmap.dialogue[i].time >= 0) notesLeft = true;
-		if (global.beatmap.dialogue[i].time >= (get_timer() - startTime)/1000 || global.beatmap.dialogue[i].time < 0){
-			continue;
-		}
-		var txt = instance_create_layer(0, 0, "Instances", o_text);
-		txt.msg = global.beatmap.dialogue[i].text;
-		txt.background_idx = global.beatmap.dialogue[i].boxIDX;
-		/*
-		with (txt){
-			
-		} //*/
-		global.beatmap.dialogue[i].time = -1;
-	} 
-}
-function HandleExistingText(){
-	for(i = 0; i < instance_number(o_text)-1; i++){
-		var tmp = instance_find(o_text, i);
-		with(tmp){
-			instance_destroy();
-		}
-	}
-}
+CheckMapVersion(global.beatmap)
 
 function CreateNewNotes(){
+	var notesLeft = false;
 	for(i = 0; i < array_length(global.beatmap.notes); i++){
 		if(global.beatmap.notes[i].time >= 0) notesLeft = true;
 		if (global.beatmap.notes[i].time >= (get_timer() - startTime)/1000 || global.beatmap.notes[i].time < 0){
@@ -95,12 +64,11 @@ function CreateNewNotes(){
 			global.beatmap.notes[i].holdTime-=fps;
 		}*/
 	} 
-	if(!notesLeft && instance_number(o_note) < 1 && instance_number(o_text) < 1){
+	if(!notesLeft && instance_number(o_note) < 1){
 		//turn this into a proper function etc
 		room = rm_score;
 	}
 }
-//handle decisions (destroy on decision, add $if, etc)
 function HandleInput(autoHandle = false){
 	if(autoHandle){
 		for(i = 0; i < instance_number(o_note); i++){
