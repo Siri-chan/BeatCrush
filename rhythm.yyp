@@ -23,6 +23,7 @@
     {"id":{"name":"txt_dialogue_bot","path":"fonts/txt_dialogue_bot/txt_dialogue_bot.yy",},"order":2,},
     {"id":{"name":"a_miss2","path":"sprites/a_miss2/a_miss2.yy",},"order":0,},
     {"id":{"name":"o_menu","path":"objects/o_menu/o_menu.yy",},"order":4,},
+    {"id":{"name":"rm_beatmap_idx","path":"rooms/rm_beatmap_idx/rm_beatmap_idx.yy",},"order":3,},
     {"id":{"name":"o_inputInfo","path":"objects/o_inputInfo/o_inputInfo.yy",},"order":5,},
     {"id":{"name":"o_EditorFramework","path":"objects/o_EditorFramework/o_EditorFramework.yy",},"order":0,},
     {"id":{"name":"i_noteCatcher","path":"sprites/i_noteCatcher/i_noteCatcher.yy",},"order":4,},
@@ -48,6 +49,7 @@
     {"roomId":{"name":"rm_menu","path":"rooms/rm_menu/rm_menu.yy",},},
     {"roomId":{"name":"rm_beatmap","path":"rooms/rm_beatmap/rm_beatmap.yy",},},
     {"roomId":{"name":"rm_score","path":"rooms/rm_score/rm_score.yy",},},
+    {"roomId":{"name":"rm_beatmap_idx","path":"rooms/rm_beatmap_idx/rm_beatmap_idx.yy",},},
   ],
   "Folders": [
     {"folderPath":"folders/Sprites.yy","order":1,"resourceVersion":"1.0","name":"Sprites","tags":[],"resourceType":"GMFolder",},
