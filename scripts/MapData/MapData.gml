@@ -16,7 +16,7 @@
 	}
 */
 //constant
-MAP_VER = 2;
+MAP_VER = 3;
 function CreateBeatMapFromData(fileName, data){
 	var errorCode = 0;
 	if (data.notes == {} || data.dialogue == {} || data.title == "" || data.songLoc == ""){
@@ -80,6 +80,9 @@ function CreateDefaultMap(){
 	//also please use namespace style naing to prevent conflicts
 	songLoc: "siri.default.ogg",
 	approachRate: 5,
+	textSpeed: 0.75,
+	textColor: c_green,
+	textShadow: c_black,
 	notes: [
 		{ position: 0, time: 2000 },
 		{ position: 4, time: 4000 },
@@ -97,7 +100,9 @@ function CreateDefaultMap(){
 		{ position: 0, time: 14000 }
 	],
 	dialogue: [
-		{ text: "test", time: 7000, decision: [] }
+		{ text: "test", time: 7000, decision: [], boxIDX: 0 },
+		//text timer ends when next text appears, add $notext for it to not display a textbox
+		{ text: "$notext", time: 9500, decision: ["Yes", "No"], boxIDX: 0}
 	]
 	}
 	ProcessErrorCodes(CreateBeatMapFromData("siri.default.beat", data));
