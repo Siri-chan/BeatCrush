@@ -1,5 +1,8 @@
 show_debug_message("Loading %localappdata%/rhythm/songs/"+ global.nxtMap);
 global.beatmap = ReadBeatMapFromFile(global.nxtMap);
+if (global.beatmap.notes == {} || global.beatmap.dialogue == {} || global.beatmap.title == "" || global.beatmap.songLoc == ""){
+	return -1;
+}
 show_debug_message("Load %localappdata%/rhythm/songs/"+ global.nxtMap +" success");
 startTime = get_timer();
 lastStep = startTime;
