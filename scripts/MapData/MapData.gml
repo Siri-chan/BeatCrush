@@ -1,30 +1,13 @@
-//default mapdata looks like this
-/*
-	var data = {
-	version: 1,
-	title: "test",
-	//only ogg is supported
-	songLoc: "song.ogg",
-	approachRate: 3.5,
-	notes: [
-		{ position: 0, time: 2000 },
-		{ position: 4, time: 4000 }
-	],
-	dialogue: [
-		{ text: "test", time: 7000, decision: [] }
-	]
-	}
-*/
 //constant
-MAP_VER = 3;
+#macro MAP_VER 3
 function CreateBeatMapFromData(fileName, data){
 	var errorCode = 0;
-	if (data.notes == {} || data.dialogue == {} || data.title == "" || data.songLoc == ""){
+	if (data.notes == {} || data.txtbxes == {} || data.title == "" || data.songLoc == ""){
 		return -1;
 	}
 	//actually write to file here
 	var _json = json_stringify(data)
-	SaveString(_json, "\\songs\\" + fileName)
+	SaveString(_json, "/songs/" + fileName)
 	return errorCode;
 }
 function ProcessErrorCodes(return_val) {
@@ -50,16 +33,6 @@ function ProcessErrorCodes(return_val) {
 	 show_debug_message(fatals[return_val*-1])
 	 return;
 }
-function ReadBeatMapFromFile(fileName){
-	if(fileName == ""){
-		fileName = "nomap.beat"
-	}
-	show_debug_message("Loading %localappdata%/rhythm/songs/"+ fileName);
-	//if (!file_exists("\\songs\\" + fileName)) return false;
-	var _json = LoadString("\\songs\\" + fileName);
-	var mapData = json_parse(_json);
-	return mapData;
-}
 
 function SaveString (_string, _filename) {
 	var _buffer = buffer_create(string_byte_length(_string) + 1, buffer_fixed, 1);
@@ -71,7 +44,7 @@ function SaveString (_string, _filename) {
 
 function CreateDefaultMap(){
 	var data = {
-	version: global.MAP_VER,
+	version: MAP_VER,
 	title: "test",
 	artist: "nobody",
 	mapper: "Siri",
@@ -99,10 +72,10 @@ function CreateDefaultMap(){
 		{ position: 1, time: 11400 },
 		{ position: 0, time: 14000 }
 	],
-	dialogue: [
-		{ text: "test", time: 7000, decision: [], boxIDX: 0 },
+	txtbxes: [
+		{ text: "test", time: 7000, decision: []},
 		//text timer ends when next text appears, add $notext for it to not display a textbox
-		{ text: "$notext", time: 9500, decision: ["Yes", "No"], boxIDX: 0}
+		{ text: "$notext", time: 9500, decision: ["Yes", "No"]}
 	]
 	}
 	ProcessErrorCodes(CreateBeatMapFromData("siri.default.beat", data));
@@ -119,11 +92,11 @@ function LoadString (_filename) {
 
 function IndexAllBeatmaps(){
 	files = []
-	if !directory_exists(working_directory + "\\songs\\")
+	if !directory_exists(working_directory + "/songs/")
     {
 		return "";
     }
-	var file = file_find_first(working_directory + "\\songs\\*.beat", 0);
+	var file = file_find_first(working_directory + "/songs/*.beat", 0);
 	for (i = 0; 0 > -1; i++){
 		if(file == "") break;
 		files[i] = file;

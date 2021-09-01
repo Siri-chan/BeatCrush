@@ -1,3 +1,4 @@
+notesLeft = false;
 CheckText();
 HandleExistingText();
 CreateNewNotes();

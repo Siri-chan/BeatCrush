@@ -1,8 +1,15 @@
+function ReadBeatMapFromFile(fileName){
+	if(fileName == ""){
+		fileName = "nomap.beat"
+	}
+	show_debug_message("Loading %localappdata%/rhythm/songs/"+ fileName);
+	//if (!file_exists("\\songs\\" + fileName)) return false;
+	var _json = LoadString("/songs/" + fileName);
+	var mapData = json_parse(_json);
+	return mapData;
+}
 show_debug_message("Loading %localappdata%/rhythm/songs/"+ global.nxtMap);
 global.beatmap = ReadBeatMapFromFile(global.nxtMap);
-if (global.beatmap.notes == {} || global.beatmap.dialogue == {} || global.beatmap.title == "" || global.beatmap.songLoc == ""){
-	return -1;
-}
 show_debug_message("Load %localappdata%/rhythm/songs/"+ global.nxtMap +" success");
 startTime = get_timer();
 lastStep = startTime;
@@ -14,29 +21,26 @@ global.misses = 0;
 global.perfects = 0;
 global.goods = 0;
 global.oks = 0;
-if(file_exists(working_directory + "\\songs\\" + global.beatmap.songLoc)){
-	global.bgm = audio_create_stream(working_directory + "\\songs\\" + global.beatmap.songLoc);
+if(file_exists(working_directory + "/songs/" + global.beatmap.songLoc)){
+	global.bgm = audio_create_stream(working_directory + "/songs/" + global.beatmap.songLoc);
 } else {
 	global.bgm = bgm_default;
 }
 audio_play_sound(global.bgm, 1, false);
 
-function CheckMapVersion(beatmap){
-	if(beatmap.version != global.MAP_VER){
-		if(beatmap.version < global.MAP_VER){
+function CheckMapVersion(){
+	if(global.beatmap.version != MAP_VER){
+		if(global.beatmap.version < MAP_VER){
 			//Back-Compatibility
-			switch(beatmap.version){
+			switch(global.beatmap.version){
 				case 1:
-					beatmap.artist = "Unknown Artist";
-					beatmap.mapper = "Unknown Mapper";
-					beatmap.contributors = [];
+					global.beatmap.artist = "Unknown Artist";
+					global.beatmap.mapper = "Unknown Mapper";
+					global.beatmap.contributors = [];
 				case 2: 
-					beatmap.textSpeed = 0.75;
-					beatmap.textColor = c_green;
-					beatmap.textShadow = c_black;
-					for(var i = 0; i < array_length(beatmap.dialogue); i++){
-						beatmap.dialogue[i].boxIDX = 0;
-					}
+					global.beatmap.textSpeed = 0.75;
+					global.beatmap.textColor = c_green;
+					global.beatmap.textShadow = c_black;
 				break;
 				default:
 				throw("Beatmap is Not Compatible with Current Version of BeatCrush," + 
@@ -45,7 +49,7 @@ function CheckMapVersion(beatmap){
 					"or Contact the Mapper to Update the Map.");
 				break;
 			}
-			return beatmap;
+			return;
 		}
 		throw("Beatmap is Written in a Newer Version of BeatCrush. " + 
 			  "Check for Updates, or Change the Beatmap Version in the *.beat file." +
@@ -53,22 +57,22 @@ function CheckMapVersion(beatmap){
 			  "and I am not liable if such an issue occurs.");
 	}
 }
-global.beatmap = CheckMapVersion(global.beatmap)
+CheckMapVersion();
 
 function CheckText(){
-	for(i = 0; i < array_length(global.beatmap.dialogue); i++){
-		if(global.beatmap.dialogue[i].time >= 0) notesLeft = true;
-		if (global.beatmap.dialogue[i].time >= (get_timer() - startTime)/1000 || global.beatmap.dialogue[i].time < 0){
+	for(i = 0; i < array_length(global.beatmap.txtbxes); i++){
+		if(global.beatmap.txtbxes[i].time >= 0) notesLeft = true;
+		if (global.beatmap.txtbxes[i].time >= (get_timer() - startTime)/1000 || global.beatmap.txtbxes[i].time < 0){
 			continue;
 		}
 		var txt = instance_create_layer(0, 0, "Instances", o_text);
-		txt.msg = global.beatmap.dialogue[i].text;
-		txt.background_idx = global.beatmap.dialogue[i].boxIDX;
+		txt.msg = global.beatmap.txtbxes[i].text;
+		txt.background_idx = 0;
 		/*
 		with (txt){
 			
 		} //*/
-		global.beatmap.dialogue[i].time = -1;
+		global.beatmap.txtbxes[i].time = -1;
 	} 
 }
 function HandleExistingText(){
