@@ -1,4 +1,6 @@
-global.beatmap = ReadBeatMapFromFile("siri.default.beat");
+show_debug_message("Loading %localappdata%/rhythm/songs/"+ global.nxtMap);
+global.beatmap = ReadBeatMapFromFile(global.nxtMap);
+show_debug_message("Load %localappdata%/rhythm/songs/"+ global.nxtMap +" success");
 startTime = get_timer();
 lastStep = startTime;
 noteCount = 0;

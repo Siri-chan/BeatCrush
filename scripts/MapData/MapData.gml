@@ -54,6 +54,7 @@ function ReadBeatMapFromFile(fileName){
 	if(fileName == ""){
 		fileName = "nomap.beat"
 	}
+	show_debug_message("Loading %localappdata%/rhythm/songs/"+ fileName);
 	//if (!file_exists("\\songs\\" + fileName)) return false;
 	var _json = LoadString("\\songs\\" + fileName);
 	var mapData = json_parse(_json);
@@ -109,4 +110,20 @@ function LoadString (_filename) {
 
 	buffer_delete(_buffer);
 	return _string;
+}
+
+function IndexAllBeatmaps(){
+	files = []
+	if !directory_exists(working_directory + "\\songs\\")
+    {
+		return "";
+    }
+	var file = file_find_first(working_directory + "\\songs\\*.beat", 0);
+	for (i = 0; 0 > -1; i++){
+		if(file == "") break;
+		files[i] = file;
+		file = file_find_next();
+	}
+	file_find_close();
+	return files;
 }

@@ -51,4 +51,9 @@ switch(room){
 		scorePercent = (score/maxScore) * 100;
 		accuracy = ((noteCount - global.misses) / noteCount) / 100 // also a percentage
 	break;
+	case rm_beatmap_idx:
+		global.nxtMap = "";
+		cur_pos = 0
+		mapList = IndexAllBeatmaps()
+	break;
 }
