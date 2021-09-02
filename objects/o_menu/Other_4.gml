@@ -10,7 +10,7 @@ function GetLetterRating(){
 		fakeCombo++;
 	}
 		//all notes, full combo, all perfect
-	accuracy = ((noteCount - global.misses) / noteCount) * 100 // also a percentage
+	accuracy = (((noteCount - global.misses) / noteCount) * 50) + 50 // also a percentage
 	//maybe swap acc and score% around	
 	if(score == maxScore && accuracy == 100) return 9;
 	
