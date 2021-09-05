@@ -14,7 +14,7 @@ function GetLetterRating(){
 	//maybe swap acc and score% around	
 	if(score == maxScore && accuracy == 100) return 9;
 	
-	scorePercent = (score/maxScore) * 100;
+	scorePercent = ((score/maxScore) * 50) + 50;
 	
 	if(accuracy < 30 || scorePercent < 25){
 		return 0;
@@ -48,11 +48,6 @@ switch(room){
 		if(GetLetterRating() == 0) {
 			//make background red
 		}
-		var noteCount = array_length(global.beatmap.notes);
-		maxScore = noteCount * (noteCount * 150);
-			//all notes, full combo, all perfect
-		scorePercent = (score/maxScore) * 100;
-		accuracy = ((noteCount - global.misses) / noteCount) / 100 // also a percentage
 	break;
 	case rm_beatmap_idx:
 		global.nxtMap = "";

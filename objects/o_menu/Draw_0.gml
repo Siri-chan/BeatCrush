@@ -11,13 +11,13 @@ switch(room){
 		draw_set_color(c_aqua);
 		draw_set_halign(fa_center);
 		draw_text(room_width/3, (room_height/9) * 3, "Score: " + string(score));
-		draw_text(room_width/3, (room_height/9) * 3.5, "Best Combo: " + string(global.maxCombo));
+		draw_text(room_width/3, (room_height/9) * 3.5, "Best Combo: " + string(global.maxCombo - 1));
 		draw_text(room_width/3, (room_height/9) * 4, "Perfect: " + string(global.perfects));
 		draw_text(room_width/3, (room_height/9) * 4.5, "Good: " + string(global.goods));
 		draw_text(room_width/3, (room_height/9) * 5, "OK: " + string(global.oks));
 		draw_text(room_width/3, (room_height/9) * 5.5, "Misses: " + string(((array_length(global.beatmap.notes) - global.oks) - global.goods) - global.perfects)); //this is still super scuffed, better than using the real miss tracker lol
 		draw_text(room_width/3, (room_height/9) * 6, "Accuracy: " + string(accuracy) + "%");
-		draw_text(room_width/3, (room_height/9) * 6.5, "Score Percentage: " + string(scorePercent) + "%");
+		draw_text(room_width/3, (room_height/9) * 6.5, "Score Percentage: (currently broken) " + string(scorePercent) + "%");
 		draw_text(room_width/3, (room_height/9) * 7, "Max Score: " + string(maxScore));
 		
 		draw_set_halign(fa_left);
