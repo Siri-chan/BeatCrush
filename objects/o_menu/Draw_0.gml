@@ -29,7 +29,7 @@ switch(room){
 		draw_set_font(csans);
 		draw_set_color(c_yellow);
 		draw_text(((room_width/9) * 8) - 150, (room_height/9) * 8, "Back to Menu");
-		draw_sprite(i_key_enter, 0, room_width - 60 - 5, (room_height/9) * 8)
+		draw_sprite(i_key_enter, 0, room_width - 100, (room_height/9) * 8)
 	break;
 	case rm_beatmap_idx:
 		/*
@@ -87,6 +87,57 @@ switch(room){
 		draw_set_halign(fa_left);
 		draw_text(room_width/2, (room_height/15) * ((i * 0.75) + 3.5), "Page: " + string(pg + 1) + "/" + string(floor(len/10) + 1));
 		global.nxtMap = mapList[cur_pos];
+	break;
+	case rm_beatmap_info:
+		draw_set_font(csans);
+		draw_set_color(c_red);
+		draw_set_halign(fa_center)
+		if(global.beatmap.version != MAP_VER){
+			draw_text(room_width / 2, room_height * 10,
+				"Beatmap Version does not match current version {" + string(MAP_VER) + "} of BeatCrush. " +
+				"Attempting Backwards compatability.");
+			if(global.beatmap.version < MAP_VER){
+				//Back-Compatibility
+				switch(global.beatmap.version){
+					case 1:
+						global.beatmap.artist = "Unknown Artist";
+						global.beatmap.mapper = "Unknown Mapper";
+						global.beatmap.contributors = [""];
+					case 2: 
+						global.beatmap.textSpeed = 0.75;
+						global.beatmap.textColor = c_green;
+						global.beatmap.textShadow = c_black;
+					break;
+					default:
+					draw_text(room_width / 2, room_height / 10 * 9,
+						"Beatmap is Not Compatible with Current Version of BeatCrush," + 
+						"and Backwards Compatibility Checks Failed." +
+						"Delete the Map and restart the Game to Regenerate the Deafult BeatMap Set," +
+						"or Contact the Mapper to Update the Map.");
+					break;
+				}
+				return;
+			}
+			draw_text(room_width / 2, room_height / 10 * 9,"Beatmap is Written in a Newer Version of BeatCrush. " + 
+					"Check for Updates, or Change the Beatmap Version in the *.beat file." +
+					"The Second Method may cause Issues and for the map to not play as intended."+
+					"and I am not liable if such an issue occurs.");
+		}
+		draw_set_color(c_blue);
+		draw_set_halign(fa_center);
+		draw_text(room_width/2, room_height / 10 * 3, "Song: " + global.beatmap.title)
+		draw_text(room_width/2, room_height / 10 * 4, "Artist: " + global.beatmap.artist)
+		draw_text(room_width/2, room_height / 10 * 5, "Mapper: " + global.beatmap.mapper)
+		draw_text(room_width/2, room_height / 10 * 6, "Approach Rate: " + string(global.beatmap.approachRate))	
+		draw_set_halign(fa_left);
+		draw_text(12, room_height / 10 * 7, "Contributors: ")
+		for(i = 0; i < array_length(global.beatmap.contributors); i++){
+			draw_text(room_width/2, room_height / 10 * 7 + (i * 0.5), global.beatmap.contributors[i])	
+		}
+		draw_set_color(c_blue)
+		draw_set_halign(fa_right);
+		draw_text(((room_width - 60) - 10), (room_height/9) * 8, "Begin ");
+		draw_sprite(i_key_enter, 0, room_width - 60 - 5, (room_height/9) * 8)
 	break;
 	default:
 	instance_destroy();

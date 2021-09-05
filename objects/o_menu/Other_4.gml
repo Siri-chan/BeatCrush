@@ -59,4 +59,25 @@ switch(room){
 		cur_pos = 0
 		mapList = IndexAllBeatmaps()
 	break;
+	case rm_beatmap:
+		window_set_caption(global.title + " | Now Playing: " + global.nxtMap);
+	break;
+	case rm_menu:
+		window_set_caption(global.title);
+	break;
+	case rm_beatmap_info:
+		function ReadBeatMapFromFile(fileName){
+			if(fileName == ""){
+				fileName = "nomap.beat"
+			}
+			show_debug_message("Loading %localappdata%/rhythm/songs/"+ fileName);
+			//if (!file_exists("\\songs\\" + fileName)) return false;
+			var _json = LoadString("/songs/" + fileName);
+			var mapData = json_parse(_json);
+			return mapData;
+		}
+		show_debug_message("Loading %localappdata%/rhythm/songs/"+ global.nxtMap);
+		global.beatmap = ReadBeatMapFromFile(global.nxtMap);
+		show_debug_message("Load %localappdata%/rhythm/songs/"+ global.nxtMap +" success");
+	break;
 }

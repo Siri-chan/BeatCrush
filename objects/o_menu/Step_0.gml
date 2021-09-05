@@ -8,7 +8,9 @@ if(keyboard_check_pressed(vk_return) || keyboard_check_pressed(vk_enter)){
 			room = rm_menu;
 		break;
 		case rm_beatmap_idx:
-			//eventually take to map info screen
+			room = rm_beatmap_info;
+		break;
+		case rm_beatmap_info:
 			room = rm_beatmap;
 		break;
 	}

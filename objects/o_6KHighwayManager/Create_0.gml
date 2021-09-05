@@ -1,16 +1,3 @@
-function ReadBeatMapFromFile(fileName){
-	if(fileName == ""){
-		fileName = "nomap.beat"
-	}
-	show_debug_message("Loading %localappdata%/rhythm/songs/"+ fileName);
-	//if (!file_exists("\\songs\\" + fileName)) return false;
-	var _json = LoadString("/songs/" + fileName);
-	var mapData = json_parse(_json);
-	return mapData;
-}
-show_debug_message("Loading %localappdata%/rhythm/songs/"+ global.nxtMap);
-global.beatmap = ReadBeatMapFromFile(global.nxtMap);
-show_debug_message("Load %localappdata%/rhythm/songs/"+ global.nxtMap +" success");
 startTime = get_timer();
 lastStep = startTime;
 noteCount = 0;
@@ -27,7 +14,6 @@ if(file_exists(working_directory + "/songs/" + global.beatmap.songLoc)){
 	global.bgm = bgm_default;
 }
 audio_play_sound(global.bgm, 1, false);
-
 function CheckMapVersion(){
 	if(global.beatmap.version != MAP_VER){
 		if(global.beatmap.version < MAP_VER){
@@ -51,14 +37,9 @@ function CheckMapVersion(){
 			}
 			return;
 		}
-		throw("Beatmap is Written in a Newer Version of BeatCrush. " + 
-			  "Check for Updates, or Change the Beatmap Version in the *.beat file." +
-			  "The Second Method may cause Issues and for the map to not play as intended."+
-			  "and I am not liable if such an issue occurs.");
 	}
 }
 CheckMapVersion();
-
 function CheckText(){
 	for(i = 0; i < array_length(global.beatmap.txtbxes); i++){
 		if(global.beatmap.txtbxes[i].time >= 0) notesLeft = true;
