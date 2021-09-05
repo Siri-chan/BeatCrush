@@ -1,7 +1,7 @@
 {
   "option_windows_display_name": "BeatCrush!",
   "option_windows_executable_name": "${project_name}.exe",
-  "option_windows_version": "0.1.1.0",
+  "option_windows_version": "0.1.2.0",
   "option_windows_company_info": "Basement Troglodytes",
   "option_windows_product_info": "BeatCrush!",
   "option_windows_copyright_info": "CopyLeft 2021 Basement Troglodytes",
