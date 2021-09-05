@@ -93,7 +93,7 @@ switch(room){
 		draw_set_color(c_red);
 		draw_set_halign(fa_center)
 		if(global.beatmap.version != MAP_VER){
-			draw_text(room_width / 2, room_height * 10,
+			draw_text(room_width / 2, room_height / 10,
 				"Beatmap Version does not match current version {" + string(MAP_VER) + "} of BeatCrush. " +
 				"Attempting Backwards compatability.");
 			if(global.beatmap.version < MAP_VER){
