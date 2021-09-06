@@ -107,6 +107,10 @@ switch(room){
 						global.beatmap.textSpeed = 0.75;
 						global.beatmap.textColor = c_green;
 						global.beatmap.textShadow = c_black;
+					case 3:
+						for(i = 0; i < array_length(global.beatmap.notes); i++){
+							global.beatmap.notes[i].hitSnd = s_hit_none;
+						}
 					break;
 					default:
 					draw_text(room_width / 2, room_height / 10 * 9,

@@ -73,6 +73,7 @@ function CreateNewNotes(){
 		}
 		var note = instance_create_layer(x + (global.beatmap.notes[i].position * 71.5), y, "Instances", o_note);
 		note.position = global.beatmap.notes[i].position;
+		note.hitSnd = global.beatmap.notes[i].hitSnd;
 		with (note){
 			var colors = [c_fuchsia, c_yellow, c_green, c_red, c_blue, c_orange];
 			image_blend = colors[position];	
@@ -99,7 +100,7 @@ function HandleInput(autoHandle = false){
 			//h.image_blend = c_white
 			CheckNoteY(h);
 		}
-	}
+	} 
 	if (keyboard_check_pressed(ord("Q"))) {
 	instance_create_layer(x, 614, "Instances", o_keyPressIndicator)
 		for(i = 0; i < instance_number(o_note); i++){
@@ -223,6 +224,7 @@ function destroyNote(note_id, pts){
 		break;
 	}
 	with(note_id){
+		audio_play_sound(hitSnd, 0, false);
 		instance_destroy();	
 	}
 }
